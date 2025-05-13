@@ -1,0 +1,18 @@
+.element-screen {
+  padding: 2rem;
+  background-color: #f8f8e7;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.element-img {
+  width: 200px;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+video {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
