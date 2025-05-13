@@ -1,0 +1,11 @@
+Instalar o Node.Js
+
+	Executar:nvm-setup.exe
+
+	Powershell:
+	nvm install 18.18.2
+
+	nvm use 18.18.2
+
+	npm -v
+	#You should see a version number like 9.x.x or 10.x.x.
