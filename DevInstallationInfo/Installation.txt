@@ -9,3 +9,7 @@ Instalar o Node.Js
 
 	npm -v
 	#You should see a version number like 9.x.x or 10.x.x.
+
+Clonar o git para pasta local
+
+Seguir o Read.me
