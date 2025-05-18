@@ -27,8 +27,7 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={<StartScreen />} />
-          <Route path="/home" element={<HomeScreen />} />
+          <Route path="/" element={<HomeScreen />} />
           <Route path="/description" element={<ElementDescription />} />
           <Route path="/history" element={<ElementHistory />} />
           <Route path="/video" element={<ElementVideo />} />
