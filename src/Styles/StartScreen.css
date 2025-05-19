@@ -1,34 +1,18 @@
-.home-screen {
-  background: url('../assets/images/museum-wall.jpg') no-repeat center center fixed;
-  background-size: cover;
-  min-height: 100vh;
-  padding: 2rem;
-  color: #fff;
-  text-align: center;
-}
-
-.museum-title {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.gallery {
+.start-museum-title-container{
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 2rem;
 }
 
-.gallery-item {
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 1rem;
-  border-radius: 10px;
-  width: 250px;
-}
+.start-museum-title {
+  font-family: 'Imprint MT Shadow', 'Georgia', serif;
+  font-size: 5em;
+  color: #FFFD90;
+  text-align: center;
+  margin-top: 160px;
 
-.gallery-img {
-  width: 100%;
-  border-radius: 8px;
+  /* Letter border (stroke) */
+  -webkit-text-stroke: 0.1px #000000; /* Chrome, Safari */
+  text-stroke: 0.1px #FFFD90; /* Standard (future-proof) */
 }
 
 .buttons {
@@ -36,17 +20,27 @@
 }
 
 .btn {
+  width: 250px;
+  height: 75px;
   display: inline-block;
-  margin: 0.3rem;
+  margin: 1.3rem;
   padding: 0.5rem 1rem;
   background-color: #ffd700;
   color: black;
   text-decoration: none;
   border-radius: 5px;
   font-weight: bold;
-  transition: background-color 0.2s ease-in-out;
+  font-size: xx-large;
+  transition: background-color 0.2sease-in-out;
 }
 
 .btn:hover {
   background-color: #e0b700;
+}
+
+.StartScreenButtonContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }

@@ -1,25 +1,31 @@
-.home-screen {
-  height: 100vh;
-  background-image: url('../Assets/images/museum-wall.png');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
+.home-screen-container {
+  height: 100%;
+  width: 100%;
+}
+
+.Grid-container{
+  display: grid;
+  grid-template-areas: "a b b c" "d e f g" ;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 2fr 2fr;
   align-items: center;
-  justify-content: flex-start;
-  position: relative;
-  overflow: hidden;
+  justify-items: center;
+  height: 90%;
+}
+
+.museum-title-container{
+  width: 100%;
 }
 
 .museum-title {
   font-family: 'Imprint MT Shadow', 'Georgia', serif;
   font-size: 2.5rem;
-  color: black;
+  color: #FFFD90;
   text-align: center;
   margin-top: 20px;
 
   /* Letter border (stroke) */
-  -webkit-text-stroke: 2px #FFFD90; /* Chrome, Safari */
+  -webkit-text-stroke: 2px black; /* Chrome, Safari */
   text-stroke: 2px #FFFD90; /* Standard (future-proof) */
 }
 
@@ -29,64 +35,79 @@
   color: white;
 }
 
-/* Mesas */
-.tables-row {
-  display: flex;
-  gap: 40px; /* espaço entre as mesas */
-  top: 450px;
-  left: 36.5%;
-  position: absolute;
+.table-img1{
+  grid-area: d;
+  width: 100%;
+  height: 72%;
+  position: relative;
+  align-self: end;
 }
-
-.table-img {
-  width: 400px;
-  height: auto;
+.table-img2{
+  grid-area: e;
+  width: 100%;
+  height: 72%;
+  position: relative;
+  align-self: end;
+}
+.table-img3{
+  grid-area: f;
+  width: 100%;
+  height: 72%;
+  position: relative;
+  align-self: end;
+}
+.table-img4{
+  grid-area: g;
+  width: 100%;
+  height: 72%;
+  position: relative;
+  align-self: end;
 }
 
 /* Museum items */
 .lightbulb-overlay {
-  position: absolute;
-  top: 405px; /* ajuste vertical */
-  left: 48%;   /* ajuste horizontal */
+  position: relative;
+  bottom: 27%;   /* ajuste horizontal */
   width: 45px; /* redimensionar */
   transition: all 0.3s ease; /* Transição smooth de iluminação */
   z-index: 2;
+  grid-area: e;
 }
 .lightbulb-overlay:hover {
   filter: drop-shadow(0 0 25px rgba(255, 255, 100, 1));
 }
 
 .eletricpen-overlay {
-  position: absolute;
-  top: 390px; /* ajuste vertical */
-  left: 55%;   /* ajuste horizontal */
+  position: relative;
+  bottom: 27%;   /* ajuste horizontal */
   width: 45px; /* redimensionar */
   transition: all 0.3s ease; /* Transição smooth de iluminação */
   z-index: 2;
+  grid-area: f;
 }
 .eletricpen-overlay:hover {
   filter: drop-shadow(0 0 10px rgba(255, 255, 100, 1));
 }
 
 .phonograph-overlay {
-  position: absolute;
-  top: 350px; /* ajuste vertical */
-  left: 65%;   /* ajuste horizontal */
+  position: relative;
+  bottom: 32%;   /* ajuste horizontal */
   width: 150px; /* redimensionar */
   transition: all 0.3s ease; /* Transição smooth de iluminação */
   z-index: 2;
+  grid-area: d;
 }
 .phonograph-overlay:hover {
   filter: drop-shadow(0 0 15px rgba(255, 255, 100, 1));
 }
 
 .kinetoschope-overlay {
-  position: absolute;
-  top: 290px; /* ajuste vertical */
-  left: 76%;   /* ajuste horizontal */
-  width: 250px; /* redimensionar */
+  position: relative;
+  bottom: 34%;   /* ajuste horizontal */
+  width: 55%; /* redimensionar */
   transition: all 0.3s ease; /* Transição smooth de iluminação */
   z-index: 2;
+  grid-area: g;
 }
 .kinetoschope-overlay:hover {
   filter: drop-shadow(0 0 15px rgba(255, 255, 100, 1));
@@ -94,51 +115,50 @@
 
 /* Frames e imagens */
 .museum-frame {
-  margin-top: 40px;
-  border: 10px solid #FFDE71; /* cor da moldura */
-  padding: 5px;
-  display: inline-block;
-  background-color: white; /* opcional: dá um fundo mais realista à moldura */
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* profundidade */
+  display: grid;
+  grid-area: b;
 }
 
 /* edison */
 .edison-img {
-  display: block;
   width: 180px; /* ajuste conforme necessário */
   height: auto;
+  border: 10px solid #FFDE71; /* cor da moldura */
+  padding: 5px;
+  background-color: white; /* opcional: dá um fundo mais realista à moldura */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* profundidade */
 }
 .edison-img:hover {
   filter: drop-shadow(0 0 25px rgba(255, 255, 100, 1));
 }
 
 .kinetophone-img {
-  position: absolute;
+  grid-area: a;
   width: 130px; /* ajuste conforme necessário */
-  top: 210px; /* ajuste vertical */
-  left: 25%;   /* ajuste horizontal */
   height: auto;
   border: 10px solid #FFDE71;
   background-color: white;
   padding: 4px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   border-radius: 4px;
+  left: 40%;
+  position: relative;
 }
 .kinetophone-img:hover {
   filter: drop-shadow(0 0 15px rgba(255, 255, 100, 1));
 }
 
 .kinetograph-img {
-  position: absolute;
+  grid-area: c;
   width: 100px; /* ajuste conforme necessário */
   height: auto;
-  top: 150px; /* ajuste vertical */
-  left: 70%;   /* ajuste horizontal */
   border: 10px solid #FFDE71;
   background-color: white;
   padding: 4px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   border-radius: 4px;
+  right: 40%;
+  position: relative;
 }
 .kinetograph-img:hover {
   filter: drop-shadow(0 0 15px rgba(255, 255, 100, 1));

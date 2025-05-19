@@ -4,35 +4,26 @@ import HomeScreen from './screens/HomeScreen';
 import ElementDescription from './screens/ElementDescription';
 import ElementHistory from './screens/ElementHistory';
 import ElementVideo from './screens/ElementVideo';
+import './Styles/App.css' 
+import DisableZoom from './useful/DisableZoom';
 
 function App() {
   return (
     <>
-    {/* <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div> */}
-    <div>
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/description" element={<ElementDescription />} />
-          <Route path="/history" element={<ElementHistory />} />
-          <Route path="/video" element={<ElementVideo />} />
-        </Routes>
-      </Router>
+    <div className="App-screen">
+      <DisableZoom>
+      <div className='ContainerRoute'>
+        <Router>
+          <Routes>
+            <Route path="/" element={<StartScreen />} exact={true}/>
+            <Route path="/home" element={<HomeScreen />} />
+            <Route path="/description" element={<ElementDescription />} />
+            <Route path="/history" element={<ElementHistory />} />
+            <Route path="/video" element={<ElementVideo />} />
+          </Routes>
+        </Router>
+      </div>
+      </DisableZoom>
     </div>
     </>
     
