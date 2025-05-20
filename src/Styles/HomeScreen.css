@@ -36,38 +36,32 @@
 }
 
 .table-img1{
-  grid-area: d;
-  width: 100%;
-  height: 72%;
-  position: relative;
-  align-self: end;
-}
-.table-img2{
   grid-area: e;
   width: 100%;
   height: 72%;
   position: relative;
+
   align-self: end;
 }
-.table-img3{
+.table-img2{
   grid-area: f;
   width: 100%;
   height: 72%;
   position: relative;
   align-self: end;
 }
-.table-img4{
-  grid-area: g;
-  width: 100%;
-  height: 72%;
-  position: relative;
-  align-self: end;
+.robot {
+  position: fixed;
+  bottom: 20px;
+  left: 100px;
+  width: 250px;
+  height: auto;
+  z-index: 9999;
 }
-
 /* Museum items */
 .lightbulb-overlay {
   position: relative;
-  bottom: 27%;   /* ajuste horizontal */
+  margin-bottom: 45%;   /* ajuste horizontal */
   width: 45px; /* redimensionar */
   transition: all 0.3s ease; /* Transição smooth de iluminação */
   z-index: 2;
@@ -79,11 +73,12 @@
 
 .eletricpen-overlay {
   position: relative;
-  bottom: 27%;   /* ajuste horizontal */
+  margin-bottom: 50%;   /* ajuste horizontal */
+  margin-left: 50%;
   width: 45px; /* redimensionar */
   transition: all 0.3s ease; /* Transição smooth de iluminação */
   z-index: 2;
-  grid-area: f;
+  grid-area: e;
 }
 .eletricpen-overlay:hover {
   filter: drop-shadow(0 0 10px rgba(255, 255, 100, 1));
@@ -91,11 +86,12 @@
 
 .phonograph-overlay {
   position: relative;
-  bottom: 32%;   /* ajuste horizontal */
+  margin-bottom: 55%;   /* ajuste horizontal */
+  margin-right: 35%;
   width: 150px; /* redimensionar */
   transition: all 0.3s ease; /* Transição smooth de iluminação */
   z-index: 2;
-  grid-area: d;
+  grid-area: f;
 }
 .phonograph-overlay:hover {
   filter: drop-shadow(0 0 15px rgba(255, 255, 100, 1));
@@ -103,11 +99,12 @@
 
 .kinetoschope-overlay {
   position: relative;
-  bottom: 34%;   /* ajuste horizontal */
+  margin-bottom: 60%;   /* ajuste horizontal */
+  margin-left: 55%;
   width: 55%; /* redimensionar */
   transition: all 0.3s ease; /* Transição smooth de iluminação */
   z-index: 2;
-  grid-area: g;
+  grid-area: f;
 }
 .kinetoschope-overlay:hover {
   filter: drop-shadow(0 0 15px rgba(255, 255, 100, 1));
