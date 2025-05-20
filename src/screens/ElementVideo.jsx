@@ -6,10 +6,11 @@ import '../Styles/ElementScreen.css';
 const ElementVideo = () => {
   return (
     <div className="element-screen">
-      <Navbar />
-      <h2>Incandescent Light Bulb - Video</h2>
+      <div>
+        <h2 className="museum-title">Incandescent Light Bulb - Video</h2>
+      </div>
       <VideoPlayerWithMarkers/>
-      <p>Watch this short documentary on the invention of the light bulb.</p>
+      <Navbar />
     </div>
   );
 };

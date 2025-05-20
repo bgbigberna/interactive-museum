@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import '../Styles/VideoPlayerWithMarkers.css';
 import videoSrc from'../Assets/videos/Exploring the Hall of Inventions_free.mp4';
+import bookMarkSrc from'../Assets/images/bookmark.png';
 
 const VideoPlayerWithMarkers = () => {
   const videoRef = useRef(null);
@@ -26,7 +27,7 @@ const VideoPlayerWithMarkers = () => {
     const newMarker = {
       time: Math.floor(currentTime),
       label: labelInput,
-      thumbnail: '/logo512.png' // Placeholder thumbnail, personalize se quiser
+      thumbnail: bookMarkSrc
     };
     setMarkers([...markers, newMarker]);
     setLabelInput('');
@@ -59,7 +60,6 @@ const VideoPlayerWithMarkers = () => {
             onChange={(e) => setLabelInput(e.target.value)}
           />
           <button onClick={handleAddMarker}>Adicionar marcador</button>
-          <p>Tempo atual: {new Date(currentTime * 1000).toISOString().substr(14, 5)}</p>
         </div>
       </div>
 

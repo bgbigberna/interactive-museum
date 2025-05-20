@@ -1,7 +1,7 @@
 .element-screen {
   padding: 2rem;
   background-color: #f3f375;
-  height: 92%;
+  height: 88%;
   text-align: center;
 }
 
@@ -15,4 +15,38 @@ video {
   border: 2px solid #ccc;
   border-radius: 10px;
   margin-top: 1rem;
+}
+
+.bottom-nav{
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  font-size: xxx-large;
+  width: 25%;
+  justify-self: anchor-center;
+  justify-content: space-between;
+  padding: 10px;
+  height: 6%;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  width: 60px;
+  background-color: #fef102; /* amarelo */
+  justify-content: space-around;
+}
+
+.nav-item:hover {
+  background-color: #fff176;
+  border-radius: 6px;
+}
+
+.nav-item span {
+  font-size: 12px;
+  margin-top: 4px;
 }

@@ -45,11 +45,11 @@
   cursor: pointer;
   margin-bottom: 1rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .bookmark-item img {
-  width: 100%;
+  width: 20%;
   height: auto;
   border-radius: 4px;
 }
