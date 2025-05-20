@@ -1,0 +1,74 @@
+.video-player-container {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.video-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.add-marker-controls {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.add-marker-controls input {
+  padding: 6px;
+  font-size: 14px;
+}
+
+.add-marker-controls button {
+  padding: 6px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.bookmark-list {
+  width: 250px;
+  border-left: 2px solid #ccc;
+  padding-left: 1rem;
+}
+
+.bookmark-list h3 {
+  margin-top: 0;
+}
+
+.bookmark-item {
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.bookmark-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.bookmark-item span {
+  font-weight: bold;
+}
+
+.bookmark-item p {
+  margin: 0.25rem 0;
+}
+
+.remove-bookmark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: red;
+  cursor: pointer;
+}
