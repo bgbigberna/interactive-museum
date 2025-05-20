@@ -8,10 +8,70 @@ import kinetophoneImg from '../Assets/images/kinetophone.jpg';
 import kinetographImg from '../Assets/images/kinetograph.jpg';
 import tableImg from '../Assets/images/table.png';
 import edisonImg from '../Assets/images/Thomas_Edison2.jpg';
+import idleRobot from '../Assets/images/robot_sprite_idle.png';
+import talkingRobot from '../Assets/images/robot_talk_full_loop.gif';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+
+const facts = {
+  lightbulb: "The lightbulb is great. The stuff Edison is known for. Did you know there were others that contributed to the development of the lightbulb?",
+  eletricPen: "Eletric pen test",
+  phonograph: "Phonograph test",
+  kinetoschope: "Kinetoschope test",
+  edison_photo: "The man himself! He had a hand in many areas such as: electric power generation, mass communication, sound recording, and motion pictures.",
+  kinetophone_photo: "Kinetophone test",
+  kinetograph_photo: "Kinetograph test",
+  robot: "Why are you touching me? I wasn't made by Edison.."
+};
+
+
+const Robot = ({ fact, setFact, className }) => {
+  const [isTalking, setIsTalking] = useState(false);
+  const synthRef = useRef(window.speechSynthesis);
+
+  useEffect(() => {
+    if (fact) {
+      setIsTalking(true);
+      const utterance = new SpeechSynthesisUtterance(fact);
+      utterance.onend = () => {
+        setIsTalking(false);
+      };
+      synthRef.current.cancel(); // Evita sobreposição de falas
+      synthRef.current.speak(utterance);
+    } else {
+      // Quando fact é null, parar a fala
+      synthRef.current.cancel();
+      setIsTalking(false);
+    }
+  }, [fact]);
+
+  return (
+    <div className="robot-container">
+      {fact && <div className="speech-bubble">{fact}</div>}
+      <img 
+        src={isTalking ? talkingRobot : idleRobot} 
+        alt="Robot"
+        className="robot"
+        onMouseEnter={() => setFact(facts.robot)}
+        onMouseLeave={() => setFact(null)}
+        style={{ cursor: 'pointer' }}
+      />
+    </div>
+  );
+};
+
 
 const HomeScreen = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
+  const [currentFact, setCurrentFact] = useState(null);
+
+  // Fala automática ao entrar
+  useEffect(() => {
+    setCurrentFact("Welcome to Thomas Edison's Interactive Musem!" +
+      "You can hover over any object and click on it to obtain an informative video about that object. " +
+      "I recommend starting out with the light bulb.");
+  }, []);
+
   return (
     <div className="home-screen-container">
       <div className='museum-title-container'>
@@ -21,35 +81,72 @@ const HomeScreen = () => {
         {/* Frames */}
         <div className="museum-frame">
           {/* Thomas Edison */}
-          <img src={edisonImg} alt="Thomas Edison" className="edison-img" style={{ cursor: 'pointer' }} />
+          <img src={edisonImg}
+          alt="Thomas Edison" 
+          className="edison-img" 
+          onMouseEnter={() => setCurrentFact(facts.edison_photo)} 
+          onMouseLeave={() => setCurrentFact(null)}
+          style={{ cursor: 'pointer' }} />
         </div>
 
         {/* Kinetophone */}
-        <img src={kinetophoneImg} alt="Kinetophone" className="kinetophone-img" style={{ cursor: 'pointer' }} />
+        <img src={kinetophoneImg}
+        alt="Kinetophone"
+        className="kinetophone-img"
+        onMouseEnter={() => setCurrentFact(facts.kinetophone_photo)} 
+        onMouseLeave={() => setCurrentFact(null)}
+        style={{ cursor: 'pointer' }} />
 
-        {/* Kinetoschope */}
-        <img src={kinetographImg} alt="Kinetograph" className="kinetograph-img" style={{ cursor: 'pointer' }} />
+        {/* Kinetograph */}
+        <img src={kinetographImg}
+        alt="Kinetograph"
+        className="kinetograph-img"
+        onMouseEnter={() => setCurrentFact(facts.kinetograph_photo)} 
+        onMouseLeave={() => setCurrentFact(null)}
+        style={{ cursor: 'pointer' }}/>
 
         {/* Mesa */}
         <img src={tableImg} alt="Table 1" className="table-img1" />
         <img src={tableImg} alt="Table 2" className="table-img2" />
-        <img src={tableImg} alt="Table 3" className="table-img3" />
-        <img src={tableImg} alt="Table 4" className="table-img4" />
         
 
         {/* Light bulb por cima */}
-        <img src={lightbulbImg} alt="Light Bulb" className="lightbulb-overlay" style={{ cursor: 'pointer' }} onClick={() => navigate('/video')}/>
+        <img src={lightbulbImg} 
+        alt="Light Bulb" 
+        className="lightbulb-overlay" 
+        onMouseEnter={() => setCurrentFact(facts.lightbulb)} 
+        onMouseLeave={() => setCurrentFact(null)}
+        style={{ cursor: 'pointer' }} 
+        onClick={() => navigate('/video')}/>
         
         
         {/* Eletric pen */}
-        <img src={eletricPenImg} alt="Eletric Pen" className="eletricpen-overlay" style={{ cursor: 'pointer' }} />
+        <img src={eletricPenImg} 
+        alt="Eletric Pen" 
+        className="eletricpen-overlay"
+        onMouseEnter={() => setCurrentFact(facts.eletricPen)} 
+        onMouseLeave={() => setCurrentFact(null)} 
+        style={{ cursor: 'pointer' }} />
 
         {/* Phonograph */}
-        <img src={phonographImg} alt="Phonograph" className="phonograph-overlay" style={{ cursor: 'pointer' }} />
+        <img src={phonographImg} 
+        alt="Phonograph" 
+        className="phonograph-overlay"
+        onMouseEnter={() => setCurrentFact(facts.phonograph)} 
+        onMouseLeave={() => setCurrentFact(null)}
+        style={{ cursor: 'pointer' }} />
 
         {/* Kinetoschope */}
-        <img src={kinetoschopeImg} alt="Kinetoschope" className="kinetoschope-overlay" style={{ cursor: 'pointer' }} />
+        <img src={kinetoschopeImg} 
+        alt="Kinetoschope" 
+        className="kinetoschope-overlay" 
+        onMouseEnter={() => setCurrentFact(facts.kinetoschope)} 
+        onMouseLeave={() => setCurrentFact(null)}
+        style={{ cursor: 'pointer' }} />
       </div>
+
+      <Robot fact={currentFact} setFact={setCurrentFact} className='robot'/>
+
     </div>
   );
 };
