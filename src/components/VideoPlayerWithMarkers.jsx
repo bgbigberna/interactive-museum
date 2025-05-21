@@ -1,80 +1,124 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState , useEffect} from 'react';
 import '../Styles/VideoPlayerWithMarkers.css';
-import videoSrc from'../Assets/videos/Exploring the Hall of Inventions_free.mp4';
-import bookMarkSrc from'../Assets/images/bookmark.png';
+import videoSrc from '../Assets/videos/Exploring the Hall of Inventions_free.mp4'
+import imageSrc from '../Assets/images/BulbNextToVideo.png';
+
+
+const formatTime = (seconds) => {
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${secs.toString().padStart(2, '0')}`;
+};
 
 const VideoPlayerWithMarkers = () => {
   const videoRef = useRef(null);
-  const [markers, setMarkers] = useState([]);
-  const [currentTime, setCurrentTime] = useState(0);
+  const [markers, setMarkers] = useState(() => {
+    const saved = localStorage.getItem('videoBookmarks');
+    return saved ? JSON.parse(saved) : [];
+  });
   const [labelInput, setLabelInput] = useState('');
+  const [glow, setGlow] = useState(false);
+  const lastGlowTime = useRef(null);
 
-  const handleTimeUpdate = () => {
-    if (videoRef.current) {
-      setCurrentTime(videoRef.current.currentTime);
+  useEffect(() => {
+  const interval = setInterval(() => {
+    if (!videoRef.current) return;
+
+    const current = Math.floor(videoRef.current.currentTime);
+    const hit = markers.some(marker => marker.time === current);
+
+    if (hit) {
+      setGlow(true);
+      lastGlowTime.current = current;
+      setTimeout(() => setGlow(false), 600); // glow lasts 600ms
     }
+  }, 500); // check every 0.5 sec
+
+    return () => clearInterval(interval);
+  }, [markers]);
+
+  const addBookmark = () => {
+    const video = videoRef.current;
+    if (!video || labelInput.trim() === '') return;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth / 4;
+    canvas.height = video.videoHeight / 4;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const thumbnail = canvas.toDataURL();
+
+    const newMarker = {
+      time: Math.floor(video.currentTime),
+      label: labelInput,
+      thumbnail,
+    };
+
+    setMarkers(prev => [...prev, newMarker]);
+    setLabelInput('');
   };
 
-  const handleMarkerClick = (time) => {
+  const removeBookmark = (index) => {
+    setMarkers(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const jumpToTime = (time) => {
     if (videoRef.current) {
       videoRef.current.currentTime = time;
       videoRef.current.play();
     }
   };
 
-  const handleAddMarker = () => {
-    if (labelInput.trim() === '') return;
-    const newMarker = {
-      time: Math.floor(currentTime),
-      label: labelInput,
-      thumbnail: bookMarkSrc
-    };
-    setMarkers([...markers, newMarker]);
-    setLabelInput('');
-  };
-
-  const handleRemoveMarker = (index) => {
-    const updated = [...markers];
-    updated.splice(index, 1);
-    setMarkers(updated);
-  };
+  useEffect(() => {
+    if (markers.length === 0) {
+      localStorage.removeItem('videoBookmarks');
+    } else {
+      localStorage.setItem('videoBookmarks', JSON.stringify(markers));
+    }
+  }, [markers]);
 
   return (
-    <div className="video-player-container">
+    <div className="video-container">
+      <div className='image-container'>
+        <img src={imageSrc} alt="Museum of Illusions" className='image'/>
+      </div>
       <div className="video-section">
-        <video
-          ref={videoRef}
-          onTimeUpdate={handleTimeUpdate}
-          controls
-          width="60%"
-        >
+        <video ref={videoRef} controls className={glow ? 'glow' : ''}>
           <source src={videoSrc} type="video/mp4" />
-          Seu navegador não suporta vídeo HTML5.
+          Your browser does not support the video tag.
         </video>
-
-        <div className="add-marker-controls">
+      </div>
+      <div className="sidebar">
+        <div className="marker-list">
+          {markers.map((marker, index) => (
+            <div key={index} className="marker-item">
+              <img
+                src={marker.thumbnail}
+                className="thumbnail"
+                onClick={() => jumpToTime(marker.time)}
+                alt={`Thumbnail for ${marker.label}`}
+              />
+              <div className="marker-info">
+                <div className="marker-label" onClick={() => jumpToTime(marker.time)}>
+                  {marker.label}
+                </div>
+                <div className="marker-time">{formatTime(marker.time)}</div>
+              </div>
+              <button className="remove-btn" onClick={() => removeBookmark(index)}>✖</button>
+            </div>
+          ))}
+        </div>
+        <div className="controls">
           <input
             type="text"
-            placeholder="Descrição do marcador"
             value={labelInput}
+            placeholder="Enter bookmark label"
             onChange={(e) => setLabelInput(e.target.value)}
           />
-          <button onClick={handleAddMarker}>Adicionar marcador</button>
+          <button onClick={addBookmark}>
+            Add
+          </button>
         </div>
-      </div>
-
-      <div className="bookmark-list">
-        <h3>Bookmarks</h3>
-        {markers.map((marker, index) => (
-          <div key={index} className="bookmark-item">
-            <img src={marker.thumbnail} alt={`Thumbnail ${index}`} onClick={() => handleMarkerClick(marker.time)} />
-            <div onClick={() => handleMarkerClick(marker.time)}>
-              <span>{new Date(marker.time * 1000).toISOString().substr(14, 5)}</span>
-              <p>{marker.label}</p>
-            </div>
-            <button className="remove-bookmark" onClick={() => handleRemoveMarker(index)}>×</button>
-          </div>
-        ))}
       </div>
     </div>
   );
