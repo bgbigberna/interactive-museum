@@ -33,6 +33,7 @@ const Robot = ({ fact, setFact, className }) => {
     if (fact) {
       setIsTalking(true);
       const utterance = new SpeechSynthesisUtterance(fact);
+      utterance.lang = 'en-US';
       utterance.onend = () => {
         setIsTalking(false);
       };

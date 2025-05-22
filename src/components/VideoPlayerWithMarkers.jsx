@@ -18,6 +18,7 @@ const VideoPlayerWithMarkers = () => {
   });
   const [labelInput, setLabelInput] = useState('');
   const [glow, setGlow] = useState(false);
+  const [glowTime, setGlowTime] = useState(null);
   const lastGlowTime = useRef(null);
 
   useEffect(() => {
@@ -27,10 +28,14 @@ const VideoPlayerWithMarkers = () => {
     const current = Math.floor(videoRef.current.currentTime);
     const hit = markers.some(marker => marker.time === current);
 
-    if (hit) {
+    if (hit && lastGlowTime.current !== current) {
       setGlow(true);
+      setGlowTime(current); // set the glowing time for the bookmark
       lastGlowTime.current = current;
-      setTimeout(() => setGlow(false), 600); // glow lasts 600ms
+      setTimeout(() => {
+        setGlow(false);
+        setGlowTime(null); // remove the glowing time after 1s
+      }, 1000); // glow lasts 1s
     }
   }, 500); // check every 0.5 sec
 
@@ -91,7 +96,7 @@ const VideoPlayerWithMarkers = () => {
       <div className="sidebar">
         <div className="marker-list">
           {markers.map((marker, index) => (
-            <div key={index} className="marker-item">
+            <div key={index} className={`marker-item${glowTime === marker.time ? ' glow' : ''}`}>
               <img
                 src={marker.thumbnail}
                 className="thumbnail"
