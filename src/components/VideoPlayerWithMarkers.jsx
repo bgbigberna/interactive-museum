@@ -1,7 +1,6 @@
 import React, { useRef, useState , useEffect} from 'react';
 import '../Styles/VideoPlayerWithMarkers.css';
 import videoSrc from '../Assets/videos/Exploring the Hall of Inventions_free.mp4'
-import imageSrc from '../Assets/images/BulbNextToVideo.png';
 
 
 const formatTime = (seconds) => {
@@ -84,9 +83,6 @@ const VideoPlayerWithMarkers = () => {
 
   return (
     <div className="video-container">
-      <div className='image-container'>
-        <img src={imageSrc} alt="Museum of Illusions" className='image'/>
-      </div>
       <div className="video-section">
         <video ref={videoRef} controls className={glow ? 'glow' : ''}>
           <source src={videoSrc} type="video/mp4" />

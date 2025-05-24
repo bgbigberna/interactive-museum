@@ -6,13 +6,21 @@ import bulb from '../Assets/images/lightbulb.png';
 const ElementHistory = () => {
   return (
     <div className="element-screen">
+      <div>
+        <h2 className="museum-title">Incandescent Light Bulb - History</h2>
+      </div>
+      <div className='image-content-container'>
+        <div className='image-container'>
+          <img src={bulb} alt="Light Bulb" className="image" />
+        </div>
+        <div className='text-container'>
+          <p className='text'>
+            Although Edison is often credited with inventing the light bulb, he improved upon earlier designs
+            to make it practical for everyday use. His team worked on it in Menlo Park, achieving a breakthrough in 1879.
+          </p>
+        </div>
+      </div>
       <Navbar />
-      <h2>Incandescent Light Bulb - History</h2>
-      <img src={bulb} alt="Light Bulb" className="element-img" />
-      <p>
-        Although Edison is often credited with inventing the light bulb, he improved upon earlier designs
-        to make it practical for everyday use. His team worked on it in Menlo Park, achieving a breakthrough in 1879.
-      </p>
     </div>
   );
 };
