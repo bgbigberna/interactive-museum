@@ -12,7 +12,7 @@ const formatTime = (seconds) => {
 const VideoPlayerWithMarkers = () => {
   const videoRef = useRef(null);
   const [markers, setMarkers] = useState(() => {
-    const saved = localStorage.getItem('videoBookmarks');
+    const saved = localStorage.getItem('videoBookmarksPhonograph');
     return saved ? JSON.parse(saved) : [];
   });
   const [labelInput, setLabelInput] = useState('');
@@ -75,11 +75,27 @@ const VideoPlayerWithMarkers = () => {
 
   useEffect(() => {
     if (markers.length === 0) {
-      localStorage.removeItem('videoBookmarks');
+      localStorage.removeItem('videoBookmarksPhonograph');
     } else {
-      localStorage.setItem('videoBookmarks', JSON.stringify(markers));
+      localStorage.setItem('videoBookmarksPhonograph', JSON.stringify(markers));
     }
   }, [markers]);
+
+  useEffect(() => {
+      const video = videoRef.current;
+      if (!video) return;
+  
+      const handlePlay = () => { lastGlowTime.current = null; };
+      const handleSeeked = () => { lastGlowTime.current = null; };
+  
+      video.addEventListener('play', handlePlay);
+      video.addEventListener('seeked', handleSeeked);
+  
+      return () => {
+        video.removeEventListener('play', handlePlay);
+        video.removeEventListener('seeked', handleSeeked);
+      };
+    }, []);
 
   return (
     <div className="video-container">

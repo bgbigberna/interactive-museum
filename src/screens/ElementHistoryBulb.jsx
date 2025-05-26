@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import '../Styles/ElementScreen.css';
 import bulb from '../Assets/images/lightbulb.png';
 
-const ElementHistory = () => {
+const ElementHistoryBulb = () => {
   return (
     <div className="element-screen">
       <div>
@@ -25,4 +25,4 @@ const ElementHistory = () => {
   );
 };
 
-export default ElementHistory;
+export default ElementHistoryBulb;

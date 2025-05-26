@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import '../Styles/ElementScreen.css';
 import bulb from '../Assets/images/lightbulb.png';
 
-const ElementDescription = () => {
+const ElementDescriptionBulb = () => {
   return (
     <div className="element-screen">
       <div>
@@ -34,4 +34,4 @@ const ElementDescription = () => {
   );
 };
 
-export default ElementDescription;
+export default ElementDescriptionBulb;

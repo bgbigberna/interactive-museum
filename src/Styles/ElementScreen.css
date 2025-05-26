@@ -25,6 +25,7 @@
     object-fit: contain;
     display: block;
     margin: 0 auto;
+        width: -webkit-fill-available;
 }
 
 .text-container {

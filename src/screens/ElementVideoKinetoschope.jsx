@@ -1,25 +1,25 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
-import VideoPlayerWithMarkers from '../components/VideoPlayerWithMarkers';
+import VideoPlayerWithMarkersKinetoschope from '../components/VideoPlayerWithMarkersKinetoschope';
 import '../Styles/ElementScreen.css';
-import imageSrc from '../Assets/images/lightbulb.png';
+import imageSrc from '../Assets/images/Kinetoscopio.png';
 
-const ElementVideo = () => {
+const ElementVideoKinetoschope = () => {
   return (
     <div className="element-screen">
       
         <div>
-          <h2 className="museum-title">Incandescent Light Bulb - Video</h2>
+          <h2 className="museum-title">Kinetoscope - Video</h2>
         </div>
         <div className='image-content-container'>
           <div className='image-container'>
             <img src={imageSrc} alt="Museum of Illusions" className='image'/>
           </div>
-          <VideoPlayerWithMarkers/>
+          <VideoPlayerWithMarkersKinetoschope/>
       </div>
       <Navbar />
     </div>
   );
 };
 
-export default ElementVideo;
+export default ElementVideoKinetoschope;
