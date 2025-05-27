@@ -1,6 +1,6 @@
 import React, { useRef, useState , useEffect} from 'react';
 import '../Styles/VideoPlayerWithMarkers.css';
-import videoSrc from '../Assets/videos/Exploring the Hall of Inventions_free.mp4'
+import videoSrc from '../Assets/videos/Who Invented The Light Bulb.mp4'
 
 
 const formatTime = (seconds) => {

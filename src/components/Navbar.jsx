@@ -3,13 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { FaHome, FaInfoCircle, FaBook, FaVideo } from 'react-icons/fa';
 import '../Styles/ElementScreen.css';
 
-const inventions = [
-  'bulb',
-  'kinetoschope',
-  'eletricpen',
-  'phonograph'
-];
-
 const Navbar = () => {
   const location = useLocation();
 

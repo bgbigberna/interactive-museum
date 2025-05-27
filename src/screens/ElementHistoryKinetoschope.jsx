@@ -15,8 +15,20 @@ const ElementHistoryKinetoschope = () => {
         </div>
         <div className='text-container'>
           <p className='text'>
-            The Kinetoscope, invented by Thomas Edison in the late 19th century, was an early motion picture exhibition device. 
-            It consisted of a wooden cabinet containing a film reel and a viewing window, allowing individuals to watch short films through a peephole.
+            Edison began working on the Kinetoscope in the late 1880s, 
+            inspired by the idea of "visual phonography"—recording 
+            images just as he had recorded sound. With Dickson’s 
+            technical expertise, the first working prototype was 
+            completed in 1891. In 1894, the first Kinetoscope parlors 
+            opened in New York, where customers paid to view short 
+            films through individual machines. Although the Kinetoscope 
+            was not a projector and could not show films to large 
+            audiences, it sparked widespread interest in motion pictures. 
+            Competitors soon developed projection systems, leading to the 
+            rapid evolution of cinema. Despite being surpassed by more 
+            advanced technologies, the Kinetoscope represents a pivotal 
+            moment in film history. It marked the beginning of motion 
+            picture storytelling and visual entertainment as we know it today.
           </p>
         </div>
       </div>

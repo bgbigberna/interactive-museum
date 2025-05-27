@@ -15,16 +15,17 @@ const ElementDescriptionBulb = () => {
         </div>
         <div className='text-container'>
           <p className='text'>
-            The incandescent light bulb is one of Thomas Edison’s most famous inventions.
-            This device produces light by heating a filament wire to a high temperature.
-            An incandescent light bulb, also known as an incandescent lamp or incandescent light globe, 
-            is an electric light that produces illumination by Joule heating a filament until it glows. 
-            The filament is enclosed in a glass bulb that is either evacuated or filled with inert gas to 
-            protect the filament from oxidation. Electric current is supplied to the filament by terminals 
-            or wires embedded in the glass. A bulb socket provides mechanical support and electrical connections. 
-            Incandescent bulbs are manufactured in a wide range of sizes, light output, 
-            and voltage ratings, from 1.5 volts to about 300 volts. 
-            They require no external regulating equipment, have low...
+            The incandescent light bulb is a device that produces light through the 
+            heating of a filament until it glows. Edison’s version of the light bulb 
+            used a carbon filament enclosed in a vacuum-sealed glass bulb, which prevented 
+            the filament from burning out quickly. When electrical current passes 
+            through the filament, it heats up and emits light as a result of incandescence. 
+            This invention revolutionized the way people live and work, offering a safer, 
+            more reliable, and longer-lasting alternative to gas lamps and candles. 
+            Edison’s design was efficient and practical enough for widespread commercial 
+            and domestic use, and it became the foundation for modern electric lighting systems. 
+            The bulb's simplicity and durability made it one of the most important technological 
+            breakthroughs in human history.
           </p>
         </div>
         

@@ -15,11 +15,18 @@ const ElementDescriptionKinetoschope = () => {
         </div>
         <div className='text-container'>
           <p className='text'>
-            The Kinetoscope is an early motion picture exhibition device. 
-            It was designed for films to be viewed by one individual at a time through a peephole viewer. 
-            The Kinetoscope was developed by Thomas Edison and his team in the late 19th century. 
-            It played a crucial role in the development of the film industry and paved the way 
-            for future motion picture technologies.
+            The Kinetoscope was an early motion picture exhibition 
+            device designed for individual viewing. Invented by 
+            Thomas Edison and his assistant William Kennedy Laurie 
+            Dickson in the early 1890s, it was a forerunner of modern 
+            film projectors. The device used a continuous strip 
+            of perforated film that passed over a light source 
+            with a rapidly spinning shutter. Viewers would look 
+            through a peephole to see a sequence of moving images, 
+            creating the illusion of motion. The Kinetoscope was 
+            revolutionary for its time, offering a new form of visual 
+            entertainment. It laid the groundwork for the development 
+            of cinema and had a profound impact on the entertainment industry.
           </p>
         </div>
         

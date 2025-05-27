@@ -15,9 +15,17 @@ const ElementDescriptionPhonograph = () => {
         </div>
         <div className='text-container'>
           <p className='text'>
-            The phonograph, invented by Thomas Edison in 1877, was the first device capable of recording and reproducing sound. 
-            It used a cylinder covered in tinfoil to capture sound waves, which were then played back by a needle tracing the grooves on the cylinder. 
-            The phonograph revolutionized the music industry and paved the way for modern audio recording and playback technologies.
+            The phonograph is one of Thomas Edison’s most famous inventions, 
+            created in 1877. It was the first device capable of recording and 
+            reproducing sound. The machine worked by using a stylus to etch sound 
+            vibrations into a rotating cylinder covered in tin foil. When the 
+            cylinder was rotated again, the stylus would follow the grooves and 
+            reproduce the original sounds. This groundbreaking technology laid 
+            the foundation for the music recording industry, audiobooks, and 
+            sound archives. Edison’s phonograph transformed how people experienced 
+            music and voice recordings, making sound something that could be stored, 
+            shared, and replayed. The phonograph evolved into the modern record 
+            player and inspired generations of audio technology.
           </p>
         </div>
         

@@ -15,12 +15,12 @@ import { useState, useEffect, useRef } from 'react';
 
 const facts = {
   lightbulb: "The lightbulb is great. The stuff Edison is known for. Did you know there were others that contributed to the development of the lightbulb?",
-  eletricPen: "Eletric pen test",
-  phonograph: "Phonograph test",
-  kinetoschope: "Kinetoschope test",
+  eletricPen: "Looks like just a pen, but it buzzed like a bee. Did you know Edison’s Electric Pen helped inspire the modern tattoo machine?",
+  phonograph: "The first machine to play back sound. Did you know Edison’s first recording was ‘Mary had a little lamb’?",
+  kinetoschope: "Old-school movie magic! Did you know Edison’s Kinetoscope showed films to one person at a time through a peephole?",
   edison_photo: "The man himself! He had a hand in many areas such as: electric power generation, mass communication, sound recording, and motion pictures.",
-  kinetophone_photo: "Kinetophone test",
-  kinetograph_photo: "Kinetograph test",
+  kinetophone_photo: "The Kinetophone aimed to bring movies to life — with sound! Edison’s early take on talking pictures.",
+  kinetograph_photo: "Lights, camera... invention! The Kinetograph was Edison’s early motion picture camera — a big leap for filmmaking.",
   robot: "Why are you touching me? I wasn't made by Edison.."
 };
 

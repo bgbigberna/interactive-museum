@@ -15,9 +15,18 @@ const ElementDescriptionEletricPen = () => {
         </div>
         <div className='text-container'>
           <p className='text'>
-            The Electric Pen, invented by Thomas Edison in 1876, was an early type of electric pen that used a vibrating needle to create ink marks on paper. 
-            It was one of the first devices to use electric power for writing and was a precursor to modern electric pens and tattoo machines. 
-            The Electric Pen was primarily used for copying documents and creating illustrations, and it played a significant role in the development of early office technology.
+            The Electric Pen, invented by Thomas Edison in 1876, 
+            was a revolutionary device designed primarily for duplicating
+            documents. The pen operated using a small electric motor that 
+            powered a needle, which rapidly punctured paper to create a 
+            stencil. This stencil could then be used with an ink roller to 
+            produce multiple copies of the original document. Although the 
+            device itself was bulky and noisy, it represented a significant 
+            step toward modern electric appliances and office automation. 
+            The Electric Pen is considered one of the earliest examples of 
+            electric writing instruments and served as a precursor to tattoo 
+            machines and duplicating technologies. Its design demonstrated Edison’s 
+            talent for combining electrical innovation with practical applications in everyday life.
           </p>
         </div>
         
