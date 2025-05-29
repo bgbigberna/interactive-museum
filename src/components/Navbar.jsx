@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <nav className="bottom-nav">
-      <Link to="/home" className={`nav-item${location.pathname === '/home' ? ' active' : ''}`}>
+      <Link to="/" className={`nav-item${location.pathname === '/' ? ' active' : ''}`}>
         <FaHome size={24} />
         <span>Home</span>
       </Link>

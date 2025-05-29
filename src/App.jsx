@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 import { AnimatePresence} from 'framer-motion';
-import StartScreen from './screens/StartScreen';
 import HomeScreen from './screens/HomeScreen';
 import ElementDescriptionBulb from './screens/ElementDescriptionBulb';
 import ElementDescriptionKinetoschope from './screens/ElementDescriptionKinetoschope';
@@ -29,8 +28,7 @@ function App() {
       <div className='ContainerRoute'>
           <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
-              <Route path="/" element={<StartScreen />} exact={true}/>
-              <Route path="/home" element={<HomeScreen />} />
+              <Route path="/" element={<HomeScreen />} exact={true}/>
 
               {/* Define the routes for Bulb */}
               <Route path="/history_bulb"     element={<AnimatedPage><ElementHistoryBulb /></AnimatedPage>} />
