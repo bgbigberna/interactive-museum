@@ -118,7 +118,7 @@ const HomeScreen = () => {
         onMouseEnter={() => setCurrentFact(facts.lightbulb)} 
         onMouseLeave={() => setCurrentFact(null)}
         style={{ cursor: 'pointer' }} 
-        onClick={() => navigate('/video_bulb')}/>
+        onClick={() => { setCurrentFact(null); navigate('/video_bulb'); }}/>
         
         
         {/* Eletric pen */}
@@ -128,7 +128,7 @@ const HomeScreen = () => {
         onMouseEnter={() => setCurrentFact(facts.eletricPen)} 
         onMouseLeave={() => setCurrentFact(null)} 
         style={{ cursor: 'pointer' }} 
-        onClick={() => navigate('/video_eletricpen')}/>
+        onClick={() => { setCurrentFact(null); navigate('/video_eletricpen'); }}/>
 
         {/* Phonograph */}
         <img src={phonographImg} 
@@ -137,7 +137,7 @@ const HomeScreen = () => {
         onMouseEnter={() => setCurrentFact(facts.phonograph)} 
         onMouseLeave={() => setCurrentFact(null)}
         style={{ cursor: 'pointer' }}
-        onClick={() => navigate('/video_phonograph')}/>
+        onClick={() => { setCurrentFact(null); navigate('/video_phonograph'); }}/>
 
         {/* Kinetoschope */}
         <img src={kinetoschopeImg} 
@@ -146,7 +146,7 @@ const HomeScreen = () => {
         onMouseEnter={() => setCurrentFact(facts.kinetoschope)} 
         onMouseLeave={() => setCurrentFact(null)}
         style={{ cursor: 'pointer' }} 
-        onClick={() => navigate('/video_kinetoschope')}/>
+        onClick={() => { setCurrentFact(null); navigate('/video_kinetoschope'); }}/>
       </div>
 
       <Robot fact={currentFact} setFact={setCurrentFact} className='robot'/>
