@@ -98,3 +98,32 @@ video {
   font-size: 12px;
   margin-top: 4px;
 }
+
+.controls {
+  position: relative;
+  margin-top: 18px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  bottom: 10%;
+  left: 50%;
+}
+
+.controls button {
+  margin-right: 10px;
+  padding: 6px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  background-color: #1f7ae0;
+  color: white;
+  border: none;
+  transition: background-color 0.3s;
+
+    
+}
+
+.controls button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
