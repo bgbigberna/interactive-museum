@@ -1,7 +1,6 @@
-import React, { useRef, useState , useEffect} from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import '../Styles/VideoPlayerWithMarkers.css';
-import videoSrc from '../Assets/videos/Who Invented The Light Bulb.mp4'
-
+import videoSrc from '../Assets/videos/Who Invented The Light Bulb.mp4';
 
 const formatTime = (seconds) => {
   const mins = Math.floor(seconds / 60);
@@ -19,24 +18,33 @@ const VideoPlayerWithMarkersBulb = () => {
   const [glow, setGlow] = useState(false);
   const [glowTime, setGlowTime] = useState(null);
   const lastGlowTime = useRef(null);
+  const [currentChapterIndex, setCurrentChapterIndex] = useState(0); // auto-select Chapter 1
+
+  const chapters = [
+    { label: 'Chapter 1', time: 0, description: 'What life was like before the creation and normalization of the light bulb' },
+    { label: 'Chapter 2', time: 76, description: 'The story of Humphry Davy, the first person to create artificial electric light.' },
+    { label: 'Chapter 3', time: 247, description: 'The history and contribuitions of Thomas Edison in the process of the creation of the incandescent light bulb.' },
+    { label: 'Chapter 4', time: 557, description: 'The history, development and challenges of the fluorescent light' },
+    { label: 'Chapter 5', time: 695, description: "The invention of LED's and colour changes brought to lighting." },
+  ];
 
   useEffect(() => {
-  const interval = setInterval(() => {
-    if (!videoRef.current) return;
+    const interval = setInterval(() => {
+      if (!videoRef.current) return;
 
-    const current = Math.floor(videoRef.current.currentTime);
-    const hit = markers.some(marker => marker.time === current);
+      const current = Math.floor(videoRef.current.currentTime);
+      const hit = markers.some(marker => marker.time === current);
 
-    if (hit && lastGlowTime.current !== current) {
-      setGlow(true);
-      setGlowTime(current); // set the glowing time for the bookmark
-      lastGlowTime.current = current;
-      setTimeout(() => {
-        setGlow(false);
-        setGlowTime(null); // remove the glowing time after 1s
-      }, 1000); // glow lasts 1s
-    }
-  }, 500); // check every 0.5 sec
+      if (hit && lastGlowTime.current !== current) {
+        setGlow(true);
+        setGlowTime(current);
+        lastGlowTime.current = current;
+        setTimeout(() => {
+          setGlow(false);
+          setGlowTime(null);
+        }, 1000);
+      }
+    }, 500);
 
     return () => clearInterval(interval);
   }, [markers]);
@@ -97,6 +105,22 @@ const VideoPlayerWithMarkersBulb = () => {
     };
   }, []);
 
+  // Auto-jump to Chapter 1 on video load
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleLoadedMetadata = () => {
+      jumpToTime(chapters[0].time); // Start at Chapter 1
+    };
+
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+
+    return () => {
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+    };
+  }, []);
+
   return (
     <div className="video-container">
       <div className="video-section">
@@ -104,7 +128,30 @@ const VideoPlayerWithMarkersBulb = () => {
           <source src={videoSrc} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+
+        <div className="chapters-section">
+          <div className="chapter-buttons">
+            {chapters.map((chapter, index) => (
+              <button
+                key={index}
+                className={`chapter-button${currentChapterIndex === index ? ' active' : ''}`}
+                onClick={() => {
+                  jumpToTime(chapter.time);
+                  setCurrentChapterIndex(index);
+                }}
+              >
+                {chapter.label}
+              </button>
+            ))}
+          </div>
+          {currentChapterIndex !== null && (
+            <div className="chapter-description">
+              <p>{chapters[currentChapterIndex].description}</p>
+            </div>
+          )}
+        </div>
       </div>
+
       <div className="sidebar">
         <div className="marker-list">
           {markers.map((marker, index) => (
@@ -125,6 +172,7 @@ const VideoPlayerWithMarkersBulb = () => {
             </div>
           ))}
         </div>
+
         <div className="controls">
           <input
             type="text"
@@ -132,9 +180,7 @@ const VideoPlayerWithMarkersBulb = () => {
             placeholder="Enter bookmark label"
             onChange={(e) => setLabelInput(e.target.value)}
           />
-          <button onClick={addBookmark}>
-            Add
-          </button>
+          <button onClick={addBookmark}>Add</button>
         </div>
       </div>
     </div>
@@ -142,3 +188,5 @@ const VideoPlayerWithMarkersBulb = () => {
 };
 
 export default VideoPlayerWithMarkersBulb;
+
+
