@@ -100,13 +100,10 @@ video {
 }
 
 .controls {
-  position: relative;
   margin-top: 18px;
   display: flex;
   gap: 8px;
   align-items: center;
-  bottom: 10%;
-  left: 50%;
 }
 
 .controls button {
