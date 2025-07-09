@@ -1,4 +1,3 @@
-import React from 'react';
 import '../Styles/HomeScreen.css';
 import lightbulbImg from '../Assets/images/lightbulb.png';
 import eletricPenImg from '../Assets/images/eletric-pen.png';
@@ -24,7 +23,6 @@ const facts = {
   robot: "Why are you touching me? I wasn't made by Edison.."
 };
 
-
 const Robot = ({ fact, setFact, className }) => {
   const [isTalking, setIsTalking] = useState(false);
   const synthRef = useRef(window.speechSynthesis);
@@ -34,13 +32,10 @@ const Robot = ({ fact, setFact, className }) => {
       setIsTalking(true);
       const utterance = new SpeechSynthesisUtterance(fact);
       utterance.lang = 'en-US';
-      utterance.onend = () => {
-        setIsTalking(false);
-      };
-      synthRef.current.cancel(); // Evita sobreposição de falas
+      utterance.onend = () => setIsTalking(false);
+      synthRef.current.cancel();
       synthRef.current.speak(utterance);
     } else {
-      // Quando fact é null, parar a fala
       synthRef.current.cancel();
       setIsTalking(false);
     }
@@ -61,99 +56,111 @@ const Robot = ({ fact, setFact, className }) => {
   );
 };
 
-
 const HomeScreen = () => {
   const navigate = useNavigate(); 
   const [currentFact, setCurrentFact] = useState(null);
-  const [anyImageHovered, setAnyImageHovered] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState(null);
 
-  // Fala automática ao entrar
   useEffect(() => {
-    setCurrentFact("Welcome to Thomas Edison's Interactive Musem!" +
+    setCurrentFact("Welcome to Thomas Edison's Interactive Musem! " +
       "You can hover over any object and click on it to obtain an informative video about that object. " +
       "I recommend starting out with the light bulb.");
   }, []);
+
+  const getOverlayClass = (name) => {
+    if (!hoveredItem) return 'overlay-glow';
+    if (hoveredItem === name) return 'glow-static';
+    return 'no-glow';
+  };
 
   return (
     <div className="home-screen-container">
       <div className='museum-title-container'>
         <h1 className="museum-title">Thomas Edison's Interactive Museum</h1>
       </div>
+
       <div className='Grid-container'>
-        {/* Frames */}
+        {/* Edison */}
         <div className="museum-frame">
-          {/* Thomas Edison */}
-          <img src={edisonImg}
-          alt="Thomas Edison" 
-          className="edison-img" 
-          onMouseEnter={() => { setAnyImageHovered(true); setCurrentFact(facts.edison_photo); }}
-          onMouseLeave={() => { setAnyImageHovered(false); setCurrentFact(null); }}
-          style={{ cursor: 'pointer' }} />
+          <img
+            src={edisonImg}
+            alt="Thomas Edison"
+            className={`edison-img ${getOverlayClass('edison')}`}
+            onMouseEnter={() => { setHoveredItem('edison'); setCurrentFact(facts.edison_photo); }}
+            onMouseLeave={() => { setHoveredItem(null); setCurrentFact(null); }}
+            style={{ cursor: 'pointer' }}
+          />
         </div>
 
         {/* Kinetophone */}
-        <img src={kinetophoneImg}
-        alt="Kinetophone"
-        className="kinetophone-img"
-        onMouseEnter={() => { setAnyImageHovered(true); setCurrentFact(facts.kinetophone_photo); }}
-        onMouseLeave={() => { setAnyImageHovered(false); setCurrentFact(null); }}
-        style={{ cursor: 'pointer' }} />
+        <img
+          src={kinetophoneImg}
+          alt="Kinetophone"
+          className={`kinetophone-img ${getOverlayClass('kinetophone')}`}
+          onMouseEnter={() => { setHoveredItem('kinetophone'); setCurrentFact(facts.kinetophone_photo); }}
+          onMouseLeave={() => { setHoveredItem(null); setCurrentFact(null); }}
+          style={{ cursor: 'pointer' }}
+        />
 
         {/* Kinetograph */}
-        <img src={kinetographImg}
-        alt="Kinetograph"
-        className="kinetograph-img"
-        onMouseEnter={() => { setAnyImageHovered(true); setCurrentFact(facts.kinetograph_photo); }}
-        onMouseLeave={() => { setAnyImageHovered(false); setCurrentFact(null); }}
-        style={{ cursor: 'pointer' }}/>
+        <img
+          src={kinetographImg}
+          alt="Kinetograph"
+          className={`kinetograph-img ${getOverlayClass('kinetograph')}`}
+          onMouseEnter={() => { setHoveredItem('kinetograph'); setCurrentFact(facts.kinetograph_photo); }}
+          onMouseLeave={() => { setHoveredItem(null); setCurrentFact(null); }}
+          style={{ cursor: 'pointer' }}
+        />
 
-        {/* Mesa */}
+        {/* Tables */}
         <img src={tableImg} alt="Table 1" className="table-img1" />
         <img src={tableImg} alt="Table 2" className="table-img2" />
-        
 
-        {/* Light bulb por cima */}
-        <img src={lightbulbImg} 
-        alt="Light Bulb" 
-        className={`lightbulb-overlay${anyImageHovered ? ' no-glow' : ''}`} 
-        onMouseEnter={() => { setAnyImageHovered(true); setCurrentFact(facts.lightbulb); }} 
-        onMouseLeave={() => { setAnyImageHovered(false); setCurrentFact(null); }}
-        style={{ cursor: 'pointer' }} 
-        onClick={() => { setCurrentFact(null); navigate('/video_bulb'); }}/>
-        
-        
-        {/* Eletric pen */}
-        <img src={eletricPenImg} 
-        alt="Eletric Pen" 
-        className={`eletricpen-overlay${anyImageHovered ? ' no-glow' : ''}`}
-        onMouseEnter={() => { setAnyImageHovered(true); setCurrentFact(facts.eletricPen); }}
-        onMouseLeave={() => { setAnyImageHovered(false); setCurrentFact(null); }}
-        style={{ cursor: 'pointer' }}
-        onClick={() => { setCurrentFact(null); navigate('/video_eletricpen'); }}/>
+        {/* Light Bulb */}
+        <img
+          src={lightbulbImg}
+          alt="Light Bulb"
+          className={`lightbulb-overlay ${getOverlayClass('lightbulb')}`}
+          onMouseEnter={() => { setHoveredItem('lightbulb'); setCurrentFact(facts.lightbulb); }}
+          onMouseLeave={() => { setHoveredItem(null); setCurrentFact(null); }}
+          style={{ cursor: 'pointer' }}
+          onClick={() => { setCurrentFact(null); navigate('/video_bulb'); }}
+        />
+
+        {/* Electric Pen */}
+        <img
+          src={eletricPenImg}
+          alt="Electric Pen"
+          className={`eletricpen-overlay ${getOverlayClass('eletricPen')}`}
+          onMouseEnter={() => { setHoveredItem('eletricPen'); setCurrentFact(facts.eletricPen); }}
+          onMouseLeave={() => { setHoveredItem(null); setCurrentFact(null); }}
+          style={{ cursor: 'pointer' }}
+          onClick={() => { setCurrentFact(null); navigate('/video_eletricpen'); }}
+        />
 
         {/* Phonograph */}
-        <img src={phonographImg} 
-        alt="Phonograph" 
-        className={`phonograph-overlay${anyImageHovered ? ' no-glow' : ''}`}
-        onMouseEnter={() => { setAnyImageHovered(true); setCurrentFact(facts.phonograph); }}
-        onMouseLeave={() => { setAnyImageHovered(false); setCurrentFact(null); }}
-        style={{ cursor: 'pointer' }}
-        onClick={() => { setCurrentFact(null); navigate('/video_phonograph'); }}/>
+        <img
+          src={phonographImg}
+          alt="Phonograph"
+          className={`phonograph-overlay ${getOverlayClass('phonograph')}`}
+          onMouseEnter={() => { setHoveredItem('phonograph'); setCurrentFact(facts.phonograph); }}
+          onMouseLeave={() => { setHoveredItem(null); setCurrentFact(null); }}
+          style={{ cursor: 'pointer' }}
+          onClick={() => { setCurrentFact(null); navigate('/video_phonograph'); }}
+        />
 
         {/* Kinetoschope */}
         <img
-        src={kinetoschopeImg}
-        alt="Kinetoschope"
-        className={`kinetoschope-overlay${anyImageHovered ? ' no-glow' : ''}`}
-        onMouseEnter={() => { setAnyImageHovered(true); setCurrentFact(facts.kinetoschope); }}
-        onMouseLeave={() => { setAnyImageHovered(false); setCurrentFact(null); }}
-        style={{ cursor: 'pointer' }}
-        onClick={() => { setCurrentFact(null); navigate('/video_kinetoschope'); }}
-/>
+          src={kinetoschopeImg}
+          alt="Kinetoschope"
+          className={`kinetoschope-overlay ${getOverlayClass('kinetoschope')}`}
+          onMouseEnter={() => { setHoveredItem('kinetoschope'); setCurrentFact(facts.kinetoschope); }}
+          onMouseLeave={() => { setHoveredItem(null); setCurrentFact(null); }}
+          style={{ cursor: 'pointer' }}
+          onClick={() => { setCurrentFact(null); navigate('/video_kinetoschope'); }}/>
       </div>
 
       <Robot fact={currentFact} setFact={setCurrentFact} className='robot'/>
-
     </div>
   );
 };

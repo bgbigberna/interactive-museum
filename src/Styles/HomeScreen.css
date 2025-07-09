@@ -5,9 +5,9 @@
   flex-direction: column;
 }
 
-.Grid-container{
+.Grid-container {
   display: grid;
-  grid-template-areas: "a b b c" "d e f g" ;
+  grid-template-areas: "a b b c" "d e f g";
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 2fr 2fr;
   align-items: center;
@@ -15,7 +15,7 @@
   height: 90%;
 }
 
-.museum-title-container{
+.museum-title-container {
   width: 100%;
 }
 
@@ -25,10 +25,8 @@
   color: #FFFD90;
   text-align: center;
   margin-top: 20px;
-
-  /* Letter border (stroke) */
-  -webkit-text-stroke: 2px black; /* Chrome, Safari */
-  text-stroke: 2px #FFFD90; /* Standard (future-proof) */
+  -webkit-text-stroke: 2px black;
+  text-stroke: 2px #FFFD90;
 }
 
 .gallery {
@@ -37,15 +35,15 @@
   color: white;
 }
 
-.table-img1{
+.table-img1 {
   grid-area: e;
   width: 100%;
   height: 72%;
   position: relative;
-
   align-self: end;
 }
-.table-img2{
+
+.table-img2 {
   grid-area: f;
   width: 100%;
   height: 72%;
@@ -56,20 +54,18 @@
 .robot-container {
   position: fixed;
   bottom: 20px;
-  left: 20px; /* <- lado esquerdo */
+  left: 20px;
   z-index: 9999;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Robô dentro do container */
 .robot {
   width: 250px;
   height: auto;
 }
 
-/* Balão de fala acima do robô */
 .speech-bubble {
   background-color: rgba(255, 132, 132, 0.9);
   color: #333;
@@ -83,7 +79,6 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Triângulo do balão apontando para baixo */
 .speech-bubble::after {
   content: "";
   position: absolute;
@@ -95,17 +90,35 @@
   border-color: rgba(255, 255, 255, 0.9) transparent transparent transparent;
 }
 
-/* Triângulo do balão */
-.speech-bubble::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  margin-left: -8px;
-  border-width: 10px 8px 0 8px;
-  border-style: solid;
-  border-color: rgba(255, 255, 255, 0.9) transparent transparent transparent;
+/* ----------------------------- */
+/*     BRILHO E ANIMAÇÕES        */
+/* ----------------------------- */
+
+@keyframes bulb-glow {
+  0%   { filter: drop-shadow(0 0 0px rgba(255, 255, 100, 0)); }
+  5%   { filter: drop-shadow(0 0 25px rgba(255, 255, 100, 1)); }
+  15%  { filter: drop-shadow(0 0 0px rgba(255, 255, 100, 0)); }
+  100% { filter: drop-shadow(0 0 0px rgba(255, 255, 100, 0)); }
 }
+
+.overlay-glow {
+  animation: bulb-glow 3s infinite;
+  transition: filter 0.3s ease;
+}
+
+.glow-static {
+  animation: none !important;
+  filter: drop-shadow(0 0 25px rgba(255, 255, 100, 1)) !important;
+}
+
+.no-glow {
+  animation: none !important;
+  filter: none !important;
+}
+
+/* ----------------------------- */
+/*            FRAMES             */
+/* ----------------------------- */
 
 /* Frames e imagens */
 .museum-frame {
@@ -113,7 +126,6 @@
   grid-area: b;
 }
 
-/* edison */
 .edison-img {
   width: 180px; /* ajuste conforme necessário */
   height: auto;
@@ -121,9 +133,7 @@
   padding: 5px;
   background-color: white; /* opcional: dá um fundo mais realista à moldura */
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* profundidade */
-}
-.edison-img:hover {
-  filter: drop-shadow(0 0 25px rgba(255, 255, 100, 1));
+  transition: filter 0.3s ease;
 }
 
 .kinetophone-img {
@@ -137,9 +147,7 @@
   border-radius: 4px;
   left: 40%;
   position: relative;
-}
-.kinetophone-img:hover {
-  filter: drop-shadow(0 0 15px rgba(255, 255, 100, 1));
+  transition: filter 0.3s ease;
 }
 
 .kinetograph-img {
@@ -153,94 +161,65 @@
   border-radius: 4px;
   right: 40%;
   position: relative;
-}
-.kinetograph-img:hover {
-  filter: drop-shadow(0 0 15px rgba(255, 255, 100, 1));
+  transition: filter 0.3s ease;
 }
 
-/* Museum items */
-.lightbulb-overlay {
-  position: relative;
-  margin-bottom: 45%;   /* ajuste horizontal */
-  width: 45px; /* redimensionar */
-  transition: all 0.3s ease; /* Transição smooth de iluminação */
-  z-index: 2;
-  grid-area: e;
+/* Efeitos de brilho nos quadros */
+.edison-img.overlay-glow,
+.kinetophone-img.overlay-glow,
+.kinetograph-img.overlay-glow {
   animation: bulb-glow 3s infinite;
 }
-.lightbulb-overlay:hover {
-  filter: drop-shadow(0 0 25px rgba(255, 255, 100, 1));
+
+.edison-img.glow-static,
+.kinetophone-img.glow-static,
+.kinetograph-img.glow-static {
+  animation: none !important;
+  filter: drop-shadow(0 0 25px rgba(255, 255, 100, 1)) !important;
 }
-.lightbulb-overlay.no-glow {
+
+.edison-img.no-glow,
+.kinetophone-img.no-glow,
+.kinetograph-img.no-glow {
   animation: none !important;
   filter: none !important;
+}
+
+/* ----------------------------- */
+/*             ITEMS             */
+/* ----------------------------- */
+
+.lightbulb-overlay {
+  position: relative;
+  margin-bottom: 45%;
+  width: 45px;
+  z-index: 2;
+  grid-area: e;
 }
 
 .eletricpen-overlay {
   position: relative;
-  margin-bottom: 50%;   /* ajuste horizontal */
+  margin-bottom: 50%;
   margin-left: 50%;
-  width: 45px; /* redimensionar */
-  transition: all 0.3s ease; /* Transição smooth de iluminação */
+  width: 45px;
   z-index: 2;
   grid-area: e;
-  animation: bulb-glow 3s infinite;
-}
-.eletricpen-overlay:hover {
-  filter: drop-shadow(0 0 10px rgba(255, 255, 100, 1));
-}
-.eletricpen-overlay.no-glow {
-  animation: none !important;
-  filter: none !important;
 }
 
 .phonograph-overlay {
   position: relative;
-  margin-bottom: 55%;   /* ajuste horizontal */
+  margin-bottom: 55%;
   margin-right: 35%;
-  width: 150px; /* redimensionar */
-  transition: all 0.3s ease; /* Transição smooth de iluminação */
+  width: 150px;
   z-index: 2;
   grid-area: f;
-  animation: bulb-glow 3s infinite;
-}
-.phonograph-overlay:hover {
-  filter: drop-shadow(0 0 15px rgba(255, 255, 100, 1));
-}
-.phonograph-overlay.no-glow {
-  animation: none !important;
-  filter: none !important;
 }
 
 .kinetoschope-overlay {
   position: relative;
-  margin-bottom: 60%;   /* ajuste horizontal */
+  margin-bottom: 60%;
   margin-left: 55%;
-  width: 55%; /* redimensionar */
-  transition: all 0.3s ease; /* Transição smooth de iluminação */
+  width: 55%;
   z-index: 2;
   grid-area: f;
-  animation: bulb-glow 3s infinite;
-}
-.kinetoschope-overlay:hover {
-  filter: drop-shadow(0 0 15px rgba(255, 255, 100, 1));
-}
-.kinetoschope-overlay.no-glow {
-  animation: none !important;
-  filter: none !important;
-}
-
-@keyframes bulb-glow {
-  0% {
-    filter: drop-shadow(0 0 0px rgba(255, 255, 100, 0));
-  }
-  5% {
-    filter: drop-shadow(0 0 25px rgba(255, 255, 100, 1));
-  }
-  15% {
-    filter: drop-shadow(0 0 0px rgba(255, 255, 100, 0));
-  }
-  100% {
-    filter: drop-shadow(0 0 0px rgba(255, 255, 100, 0));
-  }
 }
