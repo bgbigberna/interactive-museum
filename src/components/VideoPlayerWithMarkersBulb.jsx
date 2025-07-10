@@ -121,6 +121,28 @@ const VideoPlayerWithMarkersBulb = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const video = videoRef.current;
+      if (!video) return;
+
+      const currentTime = video.currentTime;
+
+      // find the actual chapter based on the time of the video
+      const activeIndex = chapters.reduce((acc, chapter, idx) => {
+        if (currentTime >= chapter.time) return idx;
+        return acc;
+      }, 0);
+
+      // only update if chapter is diferent
+      if (currentChapterIndex !== activeIndex) {
+        setCurrentChapterIndex(activeIndex);
+      }
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, [chapters, currentChapterIndex]);
+
   return (
     <div className="video-container">
       <div className="video-section">
