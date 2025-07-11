@@ -152,7 +152,30 @@ const VideoPlayerWithMarkersEletricPen = () => {
           <source src={videoSrc} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        
+        <div className="chapters-section">
+          <div className="chapter-buttons">
+            {chapters.map((chapter, index) => (
+              <button
+                key={index}
+                className={`chapter-button${currentChapterIndex === index ? ' active' : ''}`}
+                onClick={() => {
+                  jumpToTime(chapter.time);
+                  setCurrentChapterIndex(index);
+                }}
+              >
+                {chapter.label}
+              </button>
+            ))}
+          </div>
+          {currentChapterIndex !== null && (
+            <div className="chapter-description">
+              <p>{chapters[currentChapterIndex].description}</p>
+            </div>
+          )}
+        </div>
       </div>
+      
       <div className="sidebar">
         <div className="marker-list">
           {markers.map((marker, index) => (
