@@ -19,6 +19,15 @@ const VideoPlayerWithMarkersEletricPen = () => {
   const [glow, setGlow] = useState(false);
   const [glowTime, setGlowTime] = useState(null);
   const lastGlowTime = useRef(null);
+  const [currentChapterIndex, setCurrentChapterIndex] = useState(0); // auto-select Chapter 1
+
+  const chapters = [
+    { label: 'Chapter 1', time: 0, description: 'What life was like before the creation and normalization of the light bulb' },
+    { label: 'Chapter 2', time: 76, description: 'The story of Humphry Davy, the first person to create artificial electric light.' },
+    { label: 'Chapter 3', time: 247, description: 'The history and contribuitions of Thomas Edison in the process of the creation of the incandescent light bulb.' },
+    { label: 'Chapter 4', time: 557, description: 'The history, development and challenges of the fluorescent light' },
+    { label: 'Chapter 5', time: 695, description: "The invention of LED's and colour changes brought to lighting." },
+  ];
 
   useEffect(() => {
   const interval = setInterval(() => {
@@ -96,7 +105,46 @@ const VideoPlayerWithMarkersEletricPen = () => {
         video.removeEventListener('seeked', handleSeeked);
       };
     }, []);
-
+  // Auto-jump to Chapter 1 on video load
+    useEffect(() => {
+      const video = videoRef.current;
+      if (!video) return;
+  
+      const handleLoadedMetadata = () => {
+        jumpToTime(chapters[0].time); // Start at Chapter 1
+      };
+  
+      video.addEventListener('loadedmetadata', handleLoadedMetadata);
+  
+      return () => {
+        video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      };
+    }, []);
+  
+    useEffect(() => {
+      const interval = setInterval(() => {
+        const video = videoRef.current;
+        if (!video) return;
+  
+        const currentTime = video.currentTime;
+  
+        // find the actual chapter based on the time of the video
+        const activeIndex = chapters.reduce((acc, chapter, idx) => {
+          if (currentTime >= chapter.time) return idx;
+          return acc;
+        }, 0);
+  
+        // only update if chapter is diferent
+        if (currentChapterIndex !== activeIndex) {
+          setCurrentChapterIndex(activeIndex);
+        }
+      }, 500);
+  
+      return () => clearInterval(interval);
+    }, [chapters, currentChapterIndex]);
+  
+  
+  
   return (
     <div className="video-container">
       <div className="video-section">
